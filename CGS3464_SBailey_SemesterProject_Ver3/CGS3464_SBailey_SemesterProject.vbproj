@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0B999E6F-B40C-4F01-B1D9-04D03DF6121F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>WindowsApp1.My.MyApplication</StartupObject>
+    <RootNamespace>WindowsApp1</RootNamespace>
+    <AssemblyName>WindowsApp1</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>WindowsApp1.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>WindowsApp1.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FrmCarryoutInformation.Designer.vb">
+      <DependentUpon>FrmCarryoutInformation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCarryoutInformation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCarryoutOrDelivery.Designer.vb">
+      <DependentUpon>FrmCarryoutOrDelivery.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCarryoutOrDelivery.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCheckout.Designer.vb">
+      <DependentUpon>FrmCheckout.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCheckout.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCustomOrSpecialty.Designer.vb">
+      <DependentUpon>FrmCustomOrSpecialty.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCustomOrSpecialty.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDeliveryInformation.Designer.vb">
+      <DependentUpon>FrmDeliveryInformation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDeliveryInformation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMorePizzaOrCheckout.Designer.vb">
+      <DependentUpon>FrmMorePizzaOrCheckout.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMorePizzaOrCheckout.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPizzaEdit.Designer.vb">
+      <DependentUpon>FrmPizzaEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPizzaEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmReceipt.Designer.vb">
+      <DependentUpon>FrmReceipt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmReceipt.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSauceCheeseBakeType.Designer.vb">
+      <DependentUpon>FrmSauceCheeseBakeType.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSauceCheeseBakeType.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSizeCrustType.Designer.vb">
+      <DependentUpon>FrmSizeCrustType.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSizeCrustType.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmToppings.Designer.vb">
+      <DependentUpon>FrmToppings.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmToppings.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FrmCarryoutInformation.resx">
+      <DependentUpon>FrmCarryoutInformation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCarryoutOrDelivery.resx">
+      <DependentUpon>FrmCarryoutOrDelivery.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCheckout.resx">
+      <DependentUpon>FrmCheckout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCustomOrSpecialty.resx">
+      <DependentUpon>FrmCustomOrSpecialty.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDeliveryInformation.resx">
+      <DependentUpon>FrmDeliveryInformation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMorePizzaOrCheckout.resx">
+      <DependentUpon>FrmMorePizzaOrCheckout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPizzaEdit.resx">
+      <DependentUpon>FrmPizzaEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmReceipt.resx">
+      <DependentUpon>FrmReceipt.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSauceCheeseBakeType.resx">
+      <DependentUpon>FrmSauceCheeseBakeType.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSizeCrustType.resx">
+      <DependentUpon>FrmSizeCrustType.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmToppings.resx">
+      <DependentUpon>FrmToppings.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>
