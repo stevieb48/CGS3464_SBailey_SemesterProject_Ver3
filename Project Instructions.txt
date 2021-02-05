@@ -1,0 +1,19 @@
+Module 7 - Final Project
+
+This is the drop box for your individual project you planned to design
+
+Requirements
+
+1. Design document
+
+2. Good visual effects with images, colors, controls on your forms etc.
+
+3. Buttons to perform calculations, clearing contents, exiting the program
+
+Rubric
+
+Visual appeal 30%
+
+Working controls 40%
+
+Accuracy of the program 30%
