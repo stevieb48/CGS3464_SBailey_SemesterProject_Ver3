@@ -6,7 +6,8 @@
 '@version: 1.0
 '
 'Description
-' This SpecVeggie Class inherits from the Pizza Class, which inherits from the Item Class.
+' This 'SpecVeggie' Class inherits from the 'Pizza' Class, which inherits from the 'Item' Class. Describes a Veggie Pizza.
+
 Imports EnumLists
 
 Public Class SpecVeggie

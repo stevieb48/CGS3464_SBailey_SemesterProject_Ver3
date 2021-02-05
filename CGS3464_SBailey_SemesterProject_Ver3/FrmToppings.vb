@@ -1,4 +1,7 @@
-﻿'@author: Stephen Bailey
+﻿Imports Classes
+Imports EnumLists
+
+'@author: Stephen Bailey
 'course: CGS3464
 'assignment: final project
 'date: 10/08/2018
@@ -6,25 +9,21 @@
 '@version: 1.0
 '
 'Description
-' The Purpose of this Form FrmToppings is to help user decide which Toppings.
-Imports Classes
-Imports EnumLists
-
+' The Purpose of this Form 'FrmToppings' is to help user decide which 'Toppings'.
 Public Class FrmToppings
     '****************** PUBLIC PROPERTIES BEGIN ******************
     ' property to store the main form
-    Public FrmMain1 As FrmMain = New FrmMain()
+    Public Property FrmMain1 As FrmMain = New FrmMain()
 
     ' property to store the previous form
-    Public FrmSauceCheeseBake1 As FrmSauceCheeseBake
+    Public Property FrmSauceCheeseBake1 As FrmSauceCheeseBake
 
     ' property to store the next form
-    Public FrmPizzaEdit1 As FrmPizzaEdit
+    Public Property FrmPizzaEdit1 As FrmPizzaEdit
     ' ******************* PUBLIC PROPERTIES END *******************
 
     ' constructor default form
     Public Sub New()
-
         ' This call is required by the designer.
         InitializeComponent()
 
@@ -38,20 +37,20 @@ Public Class FrmToppings
     End Sub
 
     ' ******************* EVENT LISTENERS BEGIN *******************
-    ' event
+    ' event when CarryoutOrDelivery combobox was changed
     Private Sub CbxCarryoutOrDelivery_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CboCarryoutOrDelivery.SelectedIndexChanged
         ' if ordertype changes
         If CboCarryoutOrDelivery.SelectedItem = OrderTypeList.Carryout Then
-            FrmMain1.tempOrder.OType = OrderTypeList.Carryout
+            FrmMain1.TempOrder.OType = OrderTypeList.Carryout
         ElseIf CboCarryoutOrDelivery.SelectedItem = OrderTypeList.Delivery Then
-            FrmMain1.tempOrder.OType = OrderTypeList.Delivery
+            FrmMain1.TempOrder.OType = OrderTypeList.Delivery
         End If
 
         ' set main forms combobox
         FrmMain1.CboCarryoutOrDelivery.SelectedItem = CboCarryoutOrDelivery.SelectedItem
     End Sub
 
-    ' event
+    ' event next button is clicked
     Private Sub BtnNext_Click(sender As Object, e As EventArgs) Handles BtnNext.Click
         ' change toppings
         ChangePizzaToppings()
@@ -65,7 +64,7 @@ Public Class FrmToppings
         PrepareShowNextForm(FrmPizzaEdit1)
     End Sub
 
-    ' event
+    ' event when previous button clicked
     Private Sub BtnPrevious_Click(sender As Object, e As EventArgs) Handles BtnPrevious.Click
         ' change toppings
         ChangePizzaToppings()
@@ -79,21 +78,21 @@ Public Class FrmToppings
         PrepareShowNextForm(FrmSauceCheeseBake1)
     End Sub
 
-    ' event
+    ' event when pizza typ combobox changed
     Private Sub CboPizzaType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CboPizzaType.SelectedIndexChanged
         ' when pizza type changes
         If CboPizzaType.SelectedItem = PizzaTypeList.Custom Then
-            FrmMain1.tempPizza.PType = PizzaTypeList.Custom
+            FrmMain1.TempPizza.PType = PizzaTypeList.Custom
         ElseIf CboPizzaType.SelectedItem = PizzaTypeList.Meatzo Then
-            FrmMain1.tempPizza.PType = PizzaTypeList.Meatzo
+            FrmMain1.TempPizza.PType = PizzaTypeList.Meatzo
         ElseIf CboPizzaType.SelectedItem = PizzaTypeList.Supremo Then
-            FrmMain1.tempPizza.PType = PizzaTypeList.Supremo
+            FrmMain1.TempPizza.PType = PizzaTypeList.Supremo
         ElseIf CboPizzaType.SelectedItem = PizzaTypeList.SurfsUp Then
-            FrmMain1.tempPizza.PType = PizzaTypeList.SurfsUp
+            FrmMain1.TempPizza.PType = PizzaTypeList.SurfsUp
         ElseIf CboPizzaType.SelectedItem = PizzaTypeList.Taco Then
-            FrmMain1.tempPizza.PType = PizzaTypeList.Taco
+            FrmMain1.TempPizza.PType = PizzaTypeList.Taco
         ElseIf CboPizzaType.SelectedItem = PizzaTypeList.Veggie Then
-            FrmMain1.tempPizza.PType = PizzaTypeList.Veggie
+            FrmMain1.TempPizza.PType = PizzaTypeList.Veggie
         End If
 
         ' set main forms combobox
@@ -111,7 +110,8 @@ Public Class FrmToppings
         SetupCurrentPizzaOptions()
     End Sub
     ' ******************** EVENT LISTENERS END ********************
-
+    '
+    '
     ' ******************* CUSTOM METHODS BEGIN ********************
     ' method setup the form
     Public Sub PrepareForm()
@@ -128,7 +128,7 @@ Public Class FrmToppings
         SetupCurrentPizzaOptions()
     End Sub
 
-    ' method
+    ' method to setup form to correspond to current pizza
     Private Sub SetupCurrentPizzaOptions()
         ' temp index
         Dim toppingsindex As Integer = 0
@@ -137,9 +137,9 @@ Public Class FrmToppings
         Dim tempTopping As Topping = Nothing
 
         ' loop through checkboxes
-        While (toppingsindex < FrmMain1.tempPizza.PToppingList.Count)
+        While (toppingsindex < FrmMain1.TempPizza.PToppingList.Count)
             ' grab the topping
-            tempTopping = FrmMain1.tempPizza.PToppingList(toppingsindex)
+            tempTopping = FrmMain1.TempPizza.PToppingList(toppingsindex)
 
             ' topping is pepperoni
             If tempTopping.TType = ToppingTypeList.Pepperoni Then
@@ -323,7 +323,7 @@ Public Class FrmToppings
         End If
 
         ' change the current pizza's topping's list with temporary topping list
-        FrmMain1.tempPizza.PToppingList = tempToppingList
+        FrmMain1.TempPizza.PToppingList = tempToppingList
     End Sub
 
     ' method to prepare to show next form

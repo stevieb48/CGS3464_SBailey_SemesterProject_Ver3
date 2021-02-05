@@ -6,16 +6,16 @@
 '@version: 1.0
 '
 'Description
-' This Order Class describes a pizza order.
+' This 'Order' Class describes an order.
 Imports EnumLists
 
 Public Class Order
 
     ' ************************* CONSTANTS *************************
     Public ONE_PIZZA As Integer = 1
-    Private Const TAX_RATE As Decimal = 0.075
-    Private Const CARRYOUT_CHARGE As Decimal = 0.00
-    Private Const DELIVERY_CHARGE As Decimal = 4.0
+    Private Const TAX_RATE As Double = 0.075
+    Private Const CARRYOUT_CHARGE As Double = 0.00
+    Private Const DELIVERY_CHARGE As Double = 4.0
 
     ' instance variables
     Public Property OCustomer As Customer
@@ -23,10 +23,10 @@ Public Class Order
     Public Property OOrderNumber As Integer
     Public Property OType As OrderTypeList
     Public Property OPizzaList As List(Of Pizza)
-    Public Property OSubtotal As Decimal
-    Public Property OTax As Decimal
-    Public Property ODeliveryCharge As Decimal
-    Public Property OTotal As Decimal
+    Public Property OSubtotal As Double
+    Public Property OTax As Double
+    Public Property ODeliveryCharge As Double
+    Public Property OTotal As Double
 
     ' default constructor for new order
     Public Sub New(counter As Integer)

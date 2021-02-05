@@ -1,4 +1,6 @@
-﻿'@author: Stephen BaileyFrmCarryoutOrDelivery1
+﻿Imports EnumLists
+
+'@author: Stephen Bailey
 'course: CGS3464
 'assignment: final project
 'date: 10/08/2018
@@ -6,22 +8,20 @@
 '@version: 1.0
 '
 'Description
-' The Purpose of this Form FrmCheckout is to ...
-Imports EnumLists
-
+' The Purpose of this Form 'FrmCheckout' is to checkout the customer's order and display a receipt.
 Public Class FrmCheckout
     ' ****************** PUBLIC PROPERTIES BEGIN ******************
     ' property to store the main form
-    Public FrmMain1 As FrmMain = New FrmMain()
+    Public Property FrmMain1 As FrmMain = New FrmMain()
 
     ' property to store the previous form if order type is carryout
-    Public FrmCarryoutInformation1 As FrmCarryoutInformation
+    Public Property FrmCarryoutInformation1 As FrmCarryoutInformation
 
     ' property to store the next form if order type is delivery
-    Public FrmDeliveryInformation1 As FrmDeliveryInformation
+    Public Property FrmDeliveryInformation1 As FrmDeliveryInformation
 
     ' property to store the next form if confirmed order
-    Public FrmReceipt1 As FrmReceipt
+    Public Property FrmReceipt1 As FrmReceipt
     ' ******************* PUBLIC PROPERTIES END *******************
 
     ' constructor default form
@@ -37,31 +37,30 @@ Public Class FrmCheckout
     ' event
     Private Sub BtnPrevious_Click(sender As Object, e As EventArgs) Handles BtnPrevious.Click
         '
-        If FrmMain1.tempOrder.OType = OrderTypeList.Carryout Then
+        If FrmMain1.TempOrder.OType = OrderTypeList.Carryout Then
             ' create new form and set properties for new form
             FrmCarryoutInformation1 = New FrmCarryoutInformation() With {
                 .FrmCheckout1 = Me
             }
 
             '
-            FrmCarryoutInformation1.TxtCarryoutName.Text = FrmMain1.tempOrder.OCustomer.CName
+            FrmCarryoutInformation1.TxtCarryoutName.Text = FrmMain1.TempOrder.OCustomer.CName
 
             '
-
 
             '
             PrepareShowNextForm(FrmCarryoutInformation1)
-        ElseIf FrmMain1.tempOrder.OType = OrderTypeList.Delivery Then
+        ElseIf FrmMain1.TempOrder.OType = OrderTypeList.Delivery Then
             ' create new form and set properties for new form
             FrmDeliveryInformation1 = New FrmDeliveryInformation() With {
                 .FrmCheckout1 = Me
             }
 
             '
-            FrmDeliveryInformation1.TxtDeliveryName.Text = FrmMain1.tempOrder.OCustomer.CName
-            FrmDeliveryInformation1.TxtDeliveryStreet.Text = FrmMain1.tempOrder.OCustomer.CStreet
-            FrmDeliveryInformation1.TxtDeliveryCity.Text = FrmMain1.tempOrder.OCustomer.CCity
-            FrmDeliveryInformation1.TxtZipcode.Text = FrmMain1.tempOrder.OCustomer.CZipcode
+            FrmDeliveryInformation1.TxtDeliveryName.Text = FrmMain1.TempOrder.OCustomer.CName
+            FrmDeliveryInformation1.TxtDeliveryStreet.Text = FrmMain1.TempOrder.OCustomer.CStreet
+            FrmDeliveryInformation1.TxtDeliveryCity.Text = FrmMain1.TempOrder.OCustomer.CCity
+            FrmDeliveryInformation1.TxtZipcode.Text = FrmMain1.TempOrder.OCustomer.CZipcode
 
             '
             PrepareShowNextForm(FrmDeliveryInformation1)
@@ -86,19 +85,19 @@ Public Class FrmCheckout
     ' method
     Public Sub PrepareForm()
         ' if delivery set the rest of the values
-        If FrmMain1.tempOrder.OType = OrderTypeList.Delivery Then
+        If FrmMain1.TempOrder.OType = OrderTypeList.Delivery Then
             '
-            LstCustomerInformation.Items.Insert(0, FrmMain1.tempOrder.OCustomer.CZipcode)
+            LstCustomerInformation.Items.Insert(0, FrmMain1.TempOrder.OCustomer.CZipcode)
 
             '
-            LstCustomerInformation.Items.Insert(0, FrmMain1.tempOrder.OCustomer.CCity)
+            LstCustomerInformation.Items.Insert(0, FrmMain1.TempOrder.OCustomer.CCity)
 
             '
-            LstCustomerInformation.Items.Insert(0, FrmMain1.tempOrder.OCustomer.CStreet)
+            LstCustomerInformation.Items.Insert(0, FrmMain1.TempOrder.OCustomer.CStreet)
         End If
 
         ' set the order name
-        LstCustomerInformation.Items.Insert(0, FrmMain1.tempOrder.OCustomer.CName)
+        LstCustomerInformation.Items.Insert(0, FrmMain1.TempOrder.OCustomer.CName)
 
         ' set the combobox to reflect the order type from incoming order
         If FrmMain1.CboCarryoutOrDelivery.SelectedItem = OrderTypeList.Carryout Then
@@ -111,7 +110,7 @@ Public Class FrmCheckout
         LblOrderNumber.Text = FrmMain1.LblOrderNumber.Text
 
         ' add pizza list to order list box
-        LstOrder.Items.AddRange(FrmMain1.tempOrder.OPizzaList.ToArray)
+        LstOrder.Items.AddRange(FrmMain1.TempOrder.OPizzaList.ToArray)
 
         ' add order details to bill
         PrepareBill()
@@ -120,16 +119,16 @@ Public Class FrmCheckout
     '
     Private Sub PrepareBill()
         '
-        lblSubtotal.Text = FormatCurrency(FrmMain1.tempOrder.OSubtotal)
+        lblSubtotal.Text = FormatCurrency(FrmMain1.TempOrder.OSubtotal)
 
         '
-        lblTax.Text = FormatCurrency(FrmMain1.tempOrder.OTax)
+        lblTax.Text = FormatCurrency(FrmMain1.TempOrder.OTax)
 
         '
-        lblDeliveryCharge.Text = FormatCurrency(FrmMain1.tempOrder.ODeliveryCharge)
+        lblDeliveryCharge.Text = FormatCurrency(FrmMain1.TempOrder.ODeliveryCharge)
 
         '
-        lblTotal.Text = FormatCurrency(FrmMain1.tempOrder.OTotal)
+        lblTotal.Text = FormatCurrency(FrmMain1.TempOrder.OTotal)
     End Sub
 
     ' method

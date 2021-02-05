@@ -6,7 +6,8 @@
 '@version: 1.0
 '
 'Description
-' This SpecSupremo Class inherits from the Pizza Class, which inherits from the Item Class.
+' This 'SpecSupremo' Class inherits from the 'Pizza' Class, which inherits from the 'Item' Class. Describes a Supreme Pizza.
+
 Imports EnumLists
 
 Public Class SpecSupremo

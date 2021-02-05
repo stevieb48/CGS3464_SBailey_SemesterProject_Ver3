@@ -231,6 +231,10 @@
       <Project>{268a03ba-de0d-4111-945c-d56464dabe3b}</Project>
       <Name>EnumLists</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.vbproj">
+      <Project>{AE1E16D9-AFD3-4863-8CEC-AE9B83981A06}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

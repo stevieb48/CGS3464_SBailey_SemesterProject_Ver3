@@ -6,16 +6,17 @@
 '@version: 1.0
 '
 'Description
-' This Cheese Class inherits from the Item Class.
+' This 'Cheese' Class inherits from the 'Item' Class. Describes cheese on a pizza.
+
 Imports EnumLists
 
 Public Class Cheese
     Inherits Item
 
     ' CONSTANTS
-    Public Const CHEDDAR_PRICE As Decimal = 0.8
-    Public Const MOZZARELLA_PRICE As Decimal = 1.0
-    Public Const MIX_PRICE As Decimal = 1.2
+    Public Const CHEDDAR_PRICE As Double = 0.8
+    Public Const MOZZARELLA_PRICE As Double = 1.0
+    Public Const MIX_PRICE As Double = 1.2
 
     ' instance property
     Public Property ChType As CheeseTypeList
@@ -27,7 +28,7 @@ Public Class Cheese
     End Sub
 
     ' constructor cheese parameters price, cheese type
-    Public Sub New(price As Decimal, type As CheeseTypeList)
+    Public Sub New(price As Double, type As CheeseTypeList)
         MyBase.New(price)
         ChType = type
     End Sub

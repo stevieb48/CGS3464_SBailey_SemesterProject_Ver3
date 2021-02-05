@@ -1,4 +1,7 @@
-﻿'@author: Stephen Bailey
+﻿Imports Classes
+Imports EnumLists
+
+'@author: Stephen Bailey
 'course: CGS3464
 'assignment: final project
 'date: 10/08/2018
@@ -6,20 +9,17 @@
 '@version: 1.0
 '
 'Description
-' The Purpose of this Form FrmSizeCrustType is to help user decide which size pizza and which type of crust.
-Imports Classes
-Imports EnumLists
-
+' The Purpose of this Form 'FrmSizeCrustType' is to help user decide which size 'pizza' and which type of 'crust'.
 Public Class FrmSizeCrustType
     ' ****************** PUBLIC PROPERTIES BEGIN ******************
     ' property to store the main form
-    Public FrmMain1 As FrmMain = New FrmMain()
+    Public Property FrmMain1 As FrmMain = New FrmMain()
 
     ' property to store the previous form
-    Public FrmCustomOrSpecialty1 As FrmCustomOrSpecialty
+    Public Property FrmCustomOrSpecialty1 As FrmCustomOrSpecialty
 
     ' property to store the next form
-    Public FrmSauceCheeseBake1 As FrmSauceCheeseBake
+    Public Property FrmSauceCheeseBake1 As FrmSauceCheeseBake
     ' ******************* PUBLIC PROPERTIES END *******************
 
     ' constructor default form
@@ -39,7 +39,7 @@ Public Class FrmSizeCrustType
     ' ******************* EVENT LISTENERS BEGIN *******************
     ' event when next button is clicked
     Private Sub BtnNext_Click(sender As Object, e As EventArgs) Handles BtnNext.Click
-        '
+        ' get current user changes 
         ChangePizzaOptions()
 
         ' create new form and set properties for new form
@@ -47,7 +47,7 @@ Public Class FrmSizeCrustType
                 .FrmSizeCrustType1 = Me
             }
 
-        '
+        ' prepare next form
         PrepareShowNextForm(FrmSauceCheeseBake1)
     End Sub
 
@@ -55,17 +55,17 @@ Public Class FrmSizeCrustType
     Private Sub CboPizzaType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CboPizzaType.SelectedIndexChanged
         ' when pizza type changes
         If CboPizzaType.SelectedItem = PizzaTypeList.Custom Then
-            FrmMain1.tempPizza.PType = PizzaTypeList.Custom
+            FrmMain1.TempPizza.PType = PizzaTypeList.Custom
         ElseIf CboPizzaType.SelectedItem = PizzaTypeList.Meatzo Then
-            FrmMain1.tempPizza.PType = PizzaTypeList.Meatzo
+            FrmMain1.TempPizza.PType = PizzaTypeList.Meatzo
         ElseIf CboPizzaType.SelectedItem = PizzaTypeList.Supremo Then
-            FrmMain1.tempPizza.PType = PizzaTypeList.Supremo
+            FrmMain1.TempPizza.PType = PizzaTypeList.Supremo
         ElseIf CboPizzaType.SelectedItem = PizzaTypeList.SurfsUp Then
-            FrmMain1.tempPizza.PType = PizzaTypeList.SurfsUp
+            FrmMain1.TempPizza.PType = PizzaTypeList.SurfsUp
         ElseIf CboPizzaType.SelectedItem = PizzaTypeList.Taco Then
-            FrmMain1.tempPizza.PType = PizzaTypeList.Taco
+            FrmMain1.TempPizza.PType = PizzaTypeList.Taco
         ElseIf CboPizzaType.SelectedItem = PizzaTypeList.Veggie Then
-            FrmMain1.tempPizza.PType = PizzaTypeList.Veggie
+            FrmMain1.TempPizza.PType = PizzaTypeList.Veggie
         End If
 
         ' set main forms combobox
@@ -79,9 +79,9 @@ Public Class FrmSizeCrustType
     Private Sub CbxCarryoutOrDelivery_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CboCarryoutOrDelivery.SelectedIndexChanged
         ' carryout or delivery is selected
         If CboCarryoutOrDelivery.SelectedItem = OrderTypeList.Carryout Then
-            FrmMain1.tempOrder.OType = OrderTypeList.Carryout
+            FrmMain1.TempOrder.OType = OrderTypeList.Carryout
         ElseIf CboCarryoutOrDelivery.SelectedItem = OrderTypeList.Delivery Then
-            FrmMain1.tempOrder.OType = OrderTypeList.Delivery
+            FrmMain1.TempOrder.OType = OrderTypeList.Delivery
         End If
 
         ' set main forms combobox
@@ -90,7 +90,7 @@ Public Class FrmSizeCrustType
 
     ' event when previous button is clicked
     Private Sub BtnPrevious_Click(sender As Object, e As EventArgs) Handles BtnPrevious.Click
-        '
+        ' get current user changes
         ChangePizzaOptions()
 
         ' create new form and set properties for new form
@@ -98,11 +98,12 @@ Public Class FrmSizeCrustType
                 .FrmSizeCrustType1 = Me
             }
 
-        '
+        ' prepare next form
         PrepareShowNextForm(FrmCustomOrSpecialty1)
     End Sub
     ' ******************** EVENT LISTENERS END ********************
-
+    '
+    '
     ' ******************* CUSTOM METHODS BEGIN ********************
     ' method setup the form
     Public Sub PrepareForm()
@@ -139,24 +140,24 @@ Public Class FrmSizeCrustType
 
     ' method to setup radio buttons with current crust type
     Private Sub SetupCurrentCrustType()
-        If FrmMain1.tempPizza.PCrust.CrType = CrustTypeList.Pan Then
+        If FrmMain1.TempPizza.PCrust.CrType = CrustTypeList.Pan Then
             RbPan.Checked = True
-        ElseIf FrmMain1.tempPizza.PCrust.CrType = CrustTypeList.Regular Then
+        ElseIf FrmMain1.TempPizza.PCrust.CrType = CrustTypeList.Regular Then
             RbRegular.Checked = True
-        ElseIf FrmMain1.tempPizza.PCrust.CrType = CrustTypeList.Thin Then
+        ElseIf FrmMain1.TempPizza.PCrust.CrType = CrustTypeList.Thin Then
             RbThin.Checked = True
-        ElseIf FrmMain1.tempPizza.PCrust.CrType = CrustTypeList.Wheat Then
+        ElseIf FrmMain1.TempPizza.PCrust.CrType = CrustTypeList.Wheat Then
             RbWheat.Checked = True
         End If
     End Sub
 
     ' method to setup radio buttons with current pizza size
     Private Sub SetupCurrentSize()
-        If FrmMain1.tempPizza.PSize = PizzaSizeList.Large Then
+        If FrmMain1.TempPizza.PSize = PizzaSizeList.Large Then
             RbLarge.Checked = True
-        ElseIf FrmMain1.tempPizza.PSize = PizzaSizeList.Medium Then
+        ElseIf FrmMain1.TempPizza.PSize = PizzaSizeList.Medium Then
             RbMedium.Checked = True
-        ElseIf FrmMain1.tempPizza.PSize = PizzaSizeList.Small Then
+        ElseIf FrmMain1.TempPizza.PSize = PizzaSizeList.Small Then
             RbSmall.Checked = True
         End If
     End Sub
@@ -165,11 +166,11 @@ Public Class FrmSizeCrustType
     Private Sub ChangePizzaSize()
         ' get size changes
         If RbLarge.Checked = True Then
-            FrmMain1.tempPizza.PSize = PizzaSizeList.Large
+            FrmMain1.TempPizza.PSize = PizzaSizeList.Large
         ElseIf RbMedium.Checked = True Then
-            FrmMain1.tempPizza.PSize = PizzaSizeList.Medium
+            FrmMain1.TempPizza.PSize = PizzaSizeList.Medium
         ElseIf RbSmall.Checked = True Then
-            FrmMain1.tempPizza.PSize = PizzaSizeList.Small
+            FrmMain1.TempPizza.PSize = PizzaSizeList.Small
         End If
     End Sub
 
@@ -177,29 +178,29 @@ Public Class FrmSizeCrustType
     Private Sub ChangePizzaCrustType()
         ' get crust changes
         If RbPan.Checked = True Then
-            FrmMain1.tempPizza.PCrust.CrType = CrustTypeList.Pan
-            FrmMain1.tempPizza.PCrust.SetPrice(Crust.PAN_PRICE)
+            FrmMain1.TempPizza.PCrust.CrType = CrustTypeList.Pan
+            FrmMain1.TempPizza.PCrust.IPrice = Crust.PAN_PRICE
         ElseIf RbRegular.Checked = True Then
-            FrmMain1.tempPizza.PCrust.CrType = CrustTypeList.Regular
-            FrmMain1.tempPizza.PCrust.SetPrice(Crust.REGULAR_PRICE)
+            FrmMain1.TempPizza.PCrust.CrType = CrustTypeList.Regular
+            FrmMain1.TempPizza.PCrust.IPrice = Crust.REGULAR_PRICE
         ElseIf RbThin.Checked = True Then
-            FrmMain1.tempPizza.PCrust.CrType = CrustTypeList.Thin
-            FrmMain1.tempPizza.PCrust.SetPrice(Crust.THIN_PRICE)
+            FrmMain1.TempPizza.PCrust.CrType = CrustTypeList.Thin
+            FrmMain1.TempPizza.PCrust.IPrice = Crust.THIN_PRICE
         ElseIf RbWheat.Checked = True Then
-            FrmMain1.tempPizza.PCrust.CrType = CrustTypeList.Wheat
-            FrmMain1.tempPizza.PCrust.SetPrice(Crust.WHEAT_PRICE)
+            FrmMain1.TempPizza.PCrust.CrType = CrustTypeList.Wheat
+            FrmMain1.TempPizza.PCrust.IPrice = Crust.WHEAT_PRICE
         End If
     End Sub
 
-    '
+    ' method to prepare to show next form
     Private Sub PrepareShowNextForm(nextForm As Object)
-        '
+        ' set next forms main form to current forms main form
         nextForm.FrmMain1 = FrmMain1
 
         ' prepare the next form
         nextForm.PrepareForm()
 
-        '
+        ' mimick location of current form
         nextForm.Location = Location
 
         ' show the next form

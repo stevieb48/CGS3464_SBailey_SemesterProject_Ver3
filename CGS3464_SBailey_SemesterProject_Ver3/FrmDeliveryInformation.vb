@@ -1,4 +1,7 @@
-﻿'@author: Stephen Bailey
+﻿Imports Classes
+Imports EnumLists
+
+'@author: Stephen Bailey
 'course: CGS3464
 'assignment: final project
 'date: 10/08/2018
@@ -6,28 +9,24 @@
 '@version: 1.0
 '
 'Description
-' The Purpose of this Form FrmDeliveryInformation is to ...
-Imports Classes
-Imports EnumLists
-
+' The Purpose of this Form 'FrmDeliveryInformation' is to gather the user's delivery information.
 Public Class FrmDeliveryInformation
     ' ****************** PUBLIC PROPERTIES BEGIN ******************
     ' property to store the main form
-    Public FrmMain1 As FrmMain = New FrmMain()
+    Public Property FrmMain1 As FrmMain = New FrmMain()
 
     ' property to store the next form if custom pizza 
-    Public FrmMorePizzaOrCheckout1 As FrmMorePizzaOrCheckout
+    Public Property FrmMorePizzaOrCheckout1 As FrmMorePizzaOrCheckout
 
     ' property to store the next form if custom pizza 
-    Public FrmCarryoutInformation1 As FrmCarryoutInformation
+    Public Property FrmCarryoutInformation1 As FrmCarryoutInformation
 
     ' property to store the next form if ready to check out
-    Public FrmCheckout1 As FrmCheckout
+    Public Property FrmCheckout1 As FrmCheckout
     ' ******************* PUBLIC PROPERTIES END *******************
 
     ' constructor default form
     Public Sub New()
-
         ' This call is required by the designer.
         InitializeComponent()
 
@@ -64,14 +63,11 @@ Public Class FrmDeliveryInformation
                         .FrmDeliveryInformation1 = Me
                     }
                 ' set input variables to order customer variables
-                FrmMain1.tempOrder.OCustomer = New Customer(TxtDeliveryName.Text, TxtDeliveryStreet.Text, TxtDeliveryCity.Text, TxtZipcode.Text)
+                FrmMain1.TempOrder.OCustomer = New Customer(TxtDeliveryName.Text, TxtDeliveryStreet.Text, TxtDeliveryCity.Text, TxtZipcode.Text)
 
                 ' call method to prepare next form
                 PrepareShowNextForm(FrmCheckout1)
             Else
-                ' tell user to try again
-                MessageBox.Show("Please retype your information")
-
                 '
                 TxtDeliveryName.Clear()
 
@@ -94,9 +90,9 @@ Public Class FrmDeliveryInformation
     Private Sub CboCarryoutOrDelivery_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CboCarryoutOrDelivery.SelectedIndexChanged
         '
         If CboCarryoutOrDelivery.SelectedItem = OrderTypeList.Delivery Then
-            FrmMain1.tempOrder.OType = OrderTypeList.Delivery
+            FrmMain1.TempOrder.OType = OrderTypeList.Delivery
         ElseIf CboCarryoutOrDelivery.SelectedItem = OrderTypeList.Carryout Then
-            FrmMain1.tempOrder.OType = OrderTypeList.Carryout
+            FrmMain1.TempOrder.OType = OrderTypeList.Carryout
 
             ' set main forms combobox
             FrmMain1.CboCarryoutOrDelivery.SelectedItem = CboCarryoutOrDelivery.SelectedItem
@@ -160,7 +156,7 @@ Public Class FrmDeliveryInformation
             }
 
         '
-        If TxtDeliveryName.Text <> "" And FrmMain1.IsValidAlphaInput(TxtDeliveryName.Text) Then
+        If TxtDeliveryName.Text <> "" And FrmMain1.Validator.IsValInputString(TxtDeliveryName.Text) Then
             ' set next forms text box
             FrmCarryoutInformation1.TxtCarryoutName.Text = TxtDeliveryName.Text
         Else
@@ -199,12 +195,15 @@ Public Class FrmDeliveryInformation
     ' method
     Private Function IsValidZipcode() As Boolean
         ' is valid number
-        If FrmMain1.IsValInputNumber(TxtZipcode.Text) Then
+        If FrmMain1.Validator.IsValInputNumber(TxtZipcode.Text) Then
             ' is valid zipcode
             If TxtZipcode.Text = 32533 Then
                 Return True
             End If
         End If
+
+        ' error to user
+        FrmMain1.ShowErrorMessage()
 
         ' tell user to try again
         MessageBox.Show("Please retype your zipcode")
@@ -219,9 +218,12 @@ Public Class FrmDeliveryInformation
     ' method
     Private Function IsValidCity() As Boolean
         '
-        If FrmMain1.IsValInputString(TxtDeliveryCity.Text) Then
+        If FrmMain1.Validator.IsValInputString(TxtDeliveryCity.Text) Then
             Return True
         End If
+
+        ' error to user
+        FrmMain1.ShowErrorMessage()
 
         ' tell user to try again
         MessageBox.Show("Please retype your city")
@@ -236,9 +238,12 @@ Public Class FrmDeliveryInformation
     ' method
     Private Function IsValidStreet() As Boolean
         '
-        If FrmMain1.IsValidAlphaInput(TxtDeliveryStreet.Text) Then
+        If FrmMain1.Validator.IsValInputString(TxtDeliveryStreet.Text) Then
             Return True
         End If
+
+        ' error to user
+        FrmMain1.ShowErrorMessage()
 
         ' tell user to try again
         MessageBox.Show("Please retype your street address")
@@ -253,9 +258,12 @@ Public Class FrmDeliveryInformation
     ' method
     Private Function IsValidName() As Boolean
         '
-        If FrmMain1.IsValInputString(TxtDeliveryName.Text) Then
+        If FrmMain1.Validator.IsValInputString(TxtDeliveryName.Text) Then
             Return True
         End If
+
+        ' error to user
+        FrmMain1.ShowErrorMessage()
 
         ' tell user to try again
         MessageBox.Show("Please retype your name")
@@ -270,7 +278,7 @@ Public Class FrmDeliveryInformation
         Return False
     End Function
 
-    ' method
+    ' method setup the form
     Public Sub PrepareForm()
         ' set the combobox to reflect the order type from incoming order
         CboCarryoutOrDelivery.SelectedItem = FrmMain1.CboCarryoutOrDelivery.SelectedItem

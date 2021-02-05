@@ -7,7 +7,7 @@
 '
 'Description
 ' This Enum has Supremo default topping list.
-Public Enum Class1
+Public Enum SupremoDefaultToppingList
     Pepperoni
     Ham
     Sausage

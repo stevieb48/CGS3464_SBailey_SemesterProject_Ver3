@@ -1,4 +1,7 @@
-﻿'@author: Stephen Bailey
+﻿Imports Classes
+Imports EnumLists
+
+'@author: Stephen Bailey
 'course: CGS3464
 'assignment: final project
 'date: 10/08/2018
@@ -6,23 +9,20 @@
 '@version: 1.0
 '
 'Description
-' The Purpose of this Form FrmCustomOrSpecialty is to help user decide if its carryout or delivery.
-Imports Classes
-Imports EnumLists
-
+' The Purpose of this Form 'FrmCustomOrSpecialty' is to help user decide if order is carryout or delivery.
 Public Class FrmCustomOrSpecialty
     ' ****************** PUBLIC PROPERTIES BEGIN ******************
     ' property to store the main form
-    Public FrmMain1 As FrmMain = New FrmMain()
+    Public Property FrmMain1 As FrmMain = New FrmMain()
 
     ' property to store the next form if custom pizza 
-    Public FrmSizeCrustType1 As FrmSizeCrustType
+    Public Property FrmSizeCrustType1 As FrmSizeCrustType
 
     ' property to store the next form if specialty pizza
-    Public FrmPizzaEdit1 As FrmPizzaEdit
+    Public Property FrmPizzaEdit1 As FrmPizzaEdit
 
     ' property to store the checkout form if adding new pizza to existing order
-    Public FrmMorePizzaOrCheckout1 As FrmMorePizzaOrCheckout
+    Public Property FrmMorePizzaOrCheckout1 As FrmMorePizzaOrCheckout
     ' ******************* PUBLIC PROPERTIES END *******************
 
     ' constructor default form
@@ -44,9 +44,9 @@ Public Class FrmCustomOrSpecialty
     Private Sub CbxCarryoutOrDelivery_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CboCarryoutOrDelivery.SelectedIndexChanged
         ' carryout or delivery is selected
         If CboCarryoutOrDelivery.SelectedItem = OrderTypeList.Carryout Then
-            FrmMain1.tempOrder.OType = OrderTypeList.Carryout
+            FrmMain1.TempOrder.OType = OrderTypeList.Carryout
         ElseIf CboCarryoutOrDelivery.SelectedItem = OrderTypeList.Delivery Then
-            FrmMain1.tempOrder.OType = OrderTypeList.Delivery
+            FrmMain1.TempOrder.OType = OrderTypeList.Delivery
         End If
 
         ' set main forms combobox
@@ -56,7 +56,7 @@ Public Class FrmCustomOrSpecialty
     ' event when custom button was clicked
     Private Sub BtnCustom_Click(sender As Object, e As EventArgs) Handles BtnCustom.Click
         ' set current pizza to new custom pizza
-        FrmMain1.tempPizza = New SpecCustom(PizzaTypeList.Custom, FrmMain1.tempOrder.OPizzaList.Count + FrmMain1.tempOrder.ONE_PIZZA)
+        FrmMain1.TempPizza = New SpecCustom(PizzaTypeList.Custom, FrmMain1.TempOrder.OPizzaList.Count + FrmMain1.TempOrder.ONE_PIZZA)
 
         ' set main forms combobox
         FrmMain1.CboPizzaType.SelectedItem = PizzaTypeList.Custom
@@ -68,7 +68,7 @@ Public Class FrmCustomOrSpecialty
     ' event when meatzo button was clicked
     Private Sub BtnMeatzo_Click(sender As Object, e As EventArgs) Handles BtnMeatzo.Click
         ' set current pizza to new meatzo pizza
-        FrmMain1.tempPizza = New SpecMeatzo(PizzaTypeList.Meatzo, FrmMain1.tempOrder.OPizzaList.Count + FrmMain1.tempOrder.ONE_PIZZA)
+        FrmMain1.TempPizza = New SpecMeatzo(PizzaTypeList.Meatzo, FrmMain1.TempOrder.OPizzaList.Count + FrmMain1.TempOrder.ONE_PIZZA)
 
         ' set main forms combobox
         FrmMain1.CboPizzaType.SelectedItem = PizzaTypeList.Meatzo
@@ -80,7 +80,7 @@ Public Class FrmCustomOrSpecialty
     ' event when veggie button was clicked
     Private Sub BtnVeggie_Click(sender As Object, e As EventArgs) Handles BtnVeggie.Click
         ' set current pizza to new veggie pizza
-        FrmMain1.tempPizza = New SpecVeggie(PizzaTypeList.Veggie, FrmMain1.tempOrder.OPizzaList.Count + FrmMain1.tempOrder.ONE_PIZZA)
+        FrmMain1.TempPizza = New SpecVeggie(PizzaTypeList.Veggie, FrmMain1.TempOrder.OPizzaList.Count + FrmMain1.TempOrder.ONE_PIZZA)
 
         ' set main forms combobox
         FrmMain1.CboPizzaType.SelectedItem = PizzaTypeList.Veggie
@@ -92,7 +92,7 @@ Public Class FrmCustomOrSpecialty
     ' event when surfsup button was clicked
     Private Sub BtnSurfsUp_Click(sender As Object, e As EventArgs) Handles BtnSurfsUp.Click
         ' set current pizza to new surfsup pizza
-        FrmMain1.tempPizza = New SpecSurfsUp(PizzaTypeList.SurfsUp, FrmMain1.tempOrder.OPizzaList.Count + FrmMain1.tempOrder.ONE_PIZZA)
+        FrmMain1.TempPizza = New SpecSurfsUp(PizzaTypeList.SurfsUp, FrmMain1.TempOrder.OPizzaList.Count + FrmMain1.TempOrder.ONE_PIZZA)
 
         ' set main forms combobox
         FrmMain1.CboPizzaType.SelectedItem = PizzaTypeList.SurfsUp
@@ -104,7 +104,7 @@ Public Class FrmCustomOrSpecialty
     ' event when supremo button was clicked
     Private Sub BtnSupremo_Click(sender As Object, e As EventArgs) Handles BtnSupremo.Click
         ' set current pizza to new supremo pizza
-        FrmMain1.tempPizza = New SpecSupremo(PizzaTypeList.Supremo, FrmMain1.tempOrder.OPizzaList.Count + FrmMain1.tempOrder.ONE_PIZZA)
+        FrmMain1.TempPizza = New SpecSupremo(PizzaTypeList.Supremo, FrmMain1.TempOrder.OPizzaList.Count + FrmMain1.TempOrder.ONE_PIZZA)
 
         ' set main forms combobox
         FrmMain1.CboPizzaType.SelectedItem = PizzaTypeList.Supremo
@@ -116,7 +116,7 @@ Public Class FrmCustomOrSpecialty
     ' event when taco button was clicked
     Private Sub BtnTaco_Click(sender As Object, e As EventArgs) Handles BtnTaco.Click
         ' set current pizza to new taco pizza
-        FrmMain1.tempPizza = New SpecTaco(PizzaTypeList.Taco, FrmMain1.tempOrder.OPizzaList.Count + FrmMain1.tempOrder.ONE_PIZZA)
+        FrmMain1.TempPizza = New SpecTaco(PizzaTypeList.Taco, FrmMain1.TempOrder.OPizzaList.Count + FrmMain1.TempOrder.ONE_PIZZA)
 
         ' set main forms combobox
         FrmMain1.CboPizzaType.SelectedItem = PizzaTypeList.Taco

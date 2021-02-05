@@ -6,7 +6,8 @@
 '@version: 1.0
 '
 'Description
-' This SpecSurfsUp Class inherits from the Pizza Class, which inherits from the Item Class.
+' This 'SpecSurfsUp' Class inherits from the 'Pizza' Class, which inherits from the 'Item' Class. Describes a Hawaiian Pizza.
+
 Imports EnumLists
 
 Public Class SpecSurfsUp

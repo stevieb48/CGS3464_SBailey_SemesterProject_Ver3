@@ -1,4 +1,7 @@
-﻿'@author: Stephen Bailey
+﻿Imports Classes
+Imports EnumLists
+
+'@author: Stephen Bailey
 'course: CGS3464
 'assignment: final project
 'date: 10/08/2018
@@ -6,25 +9,21 @@
 '@version: 1.0
 '
 'Description
-' The Purpose of this Form FrmSauceCheeseBakeType is to help user decide which Sauce type, Cheese type, bake Type.
-Imports Classes
-Imports EnumLists
-
+' The Purpose of this Form 'FrmSauceCheeseBakeType' is to help user decide which Sauce type, Cheese type, bake Type.
 Public Class FrmSauceCheeseBake
     '****************** PUBLIC PROPERTIES BEGIN ******************
     ' property to store the main form
-    Public FrmMain1 As FrmMain = New FrmMain()
+    Public Property FrmMain1 As FrmMain = New FrmMain()
 
     ' property to store the previous form
-    Public FrmSizeCrustType1 As FrmSizeCrustType
+    Public Property FrmSizeCrustType1 As FrmSizeCrustType
 
     ' property to store the previous form
-    Public FrmToppings1 As FrmToppings
+    Public Property FrmToppings1 As FrmToppings
     ' ******************* PUBLIC PROPERTIES END *******************
 
     ' constructor default form
     Public Sub New()
-
         ' This call is required by the designer.
         InitializeComponent()
 
@@ -38,19 +37,19 @@ Public Class FrmSauceCheeseBake
     End Sub
 
     ' ******************* EVENT LISTENERS BEGIN *******************
-    ' event
+    ' event when CarryoutOrDelivery combox is changed
     Private Sub CbxCarryoutOrDelivery_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CboCarryoutOrDelivery.SelectedIndexChanged
         If CboCarryoutOrDelivery.SelectedItem = OrderTypeList.Carryout Then
-            FrmMain1.tempOrder.OType = OrderTypeList.Carryout
+            FrmMain1.TempOrder.OType = OrderTypeList.Carryout
         ElseIf CboCarryoutOrDelivery.SelectedItem = OrderTypeList.Delivery Then
-            FrmMain1.tempOrder.OType = OrderTypeList.Delivery
+            FrmMain1.TempOrder.OType = OrderTypeList.Delivery
         End If
 
         ' set main forms combobox
         FrmMain1.CboCarryoutOrDelivery.SelectedItem = CboCarryoutOrDelivery.SelectedItem
     End Sub
 
-    ' event
+    ' event when next button is clicked
     Private Sub BtnNext_Click(sender As Object, e As EventArgs) Handles BtnNext.Click
         '
         ChangePizzaOptions()
@@ -64,21 +63,21 @@ Public Class FrmSauceCheeseBake
         PrepareShowNextForm(FrmToppings1)
     End Sub
 
-    ' event
+    ' event when the pizzatype combo box is changed
     Private Sub CboPizzaType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CboPizzaType.SelectedIndexChanged
         ' when pizza type changes
         If CboPizzaType.SelectedItem = PizzaTypeList.Custom Then
-            FrmMain1.tempPizza.PType = PizzaTypeList.Custom
+            FrmMain1.TempPizza.PType = PizzaTypeList.Custom
         ElseIf CboPizzaType.SelectedItem = PizzaTypeList.Meatzo Then
-            FrmMain1.tempPizza.PType = PizzaTypeList.Meatzo
+            FrmMain1.TempPizza.PType = PizzaTypeList.Meatzo
         ElseIf CboPizzaType.SelectedItem = PizzaTypeList.Supremo Then
-            FrmMain1.tempPizza.PType = PizzaTypeList.Supremo
+            FrmMain1.TempPizza.PType = PizzaTypeList.Supremo
         ElseIf CboPizzaType.SelectedItem = PizzaTypeList.SurfsUp Then
-            FrmMain1.tempPizza.PType = PizzaTypeList.SurfsUp
+            FrmMain1.TempPizza.PType = PizzaTypeList.SurfsUp
         ElseIf CboPizzaType.SelectedItem = PizzaTypeList.Taco Then
-            FrmMain1.tempPizza.PType = PizzaTypeList.Taco
+            FrmMain1.TempPizza.PType = PizzaTypeList.Taco
         ElseIf CboPizzaType.SelectedItem = PizzaTypeList.Veggie Then
-            FrmMain1.tempPizza.PType = PizzaTypeList.Veggie
+            FrmMain1.TempPizza.PType = PizzaTypeList.Veggie
         End If
 
         ' set main forms combobox
@@ -88,9 +87,9 @@ Public Class FrmSauceCheeseBake
         SetupCurrentPizzaOptions()
     End Sub
 
-    ' event
+    ' event when previous button is clicked
     Private Sub BtnPrevious_Click(sender As Object, e As EventArgs) Handles BtnPrevious.Click
-        '
+        ' get current user changes
         ChangePizzaOptions()
 
         ' create new form and set properties for new form
@@ -98,11 +97,12 @@ Public Class FrmSauceCheeseBake
                 .FrmSauceCheeseBake1 = Me
             }
 
-        '
+        ' prepare next form
         PrepareShowNextForm(FrmSizeCrustType1)
     End Sub
     ' ******************** EVENT LISTENERS END ********************
-
+    '
+    '
     ' ******************* CUSTOM METHODS BEGIN ********************
     ' method setup the form
     Public Sub PrepareForm()
@@ -119,7 +119,7 @@ Public Class FrmSauceCheeseBake
         SetupCurrentPizzaOptions()
     End Sub
 
-    ' method
+    ' method to change the pizza options
     Private Sub ChangePizzaOptions()
         ' change sauce type
         ChangePizzaSauceType()
@@ -131,7 +131,7 @@ Public Class FrmSauceCheeseBake
         ChangePizzaBakeType()
     End Sub
 
-    ' method
+    ' method to setup form controls with current pizza options
     Private Sub SetupCurrentPizzaOptions()
         ' sauce
         SetupCurrentSauceType()
@@ -143,103 +143,103 @@ Public Class FrmSauceCheeseBake
         SetupCurrentBakeType()
     End Sub
 
-    ' method
+    ' method to set form controls for bake type
     Private Sub SetupCurrentBakeType()
-        '
-        If FrmMain1.tempPizza.PBakeType = BakeTypeList.Normal Then
+        ' 
+        If FrmMain1.TempPizza.PBakeType = BakeTypeList.Normal Then
             RbNormal.Checked = True
-        ElseIf FrmMain1.tempPizza.PBakeType = BakeTypeList.Well Then
+        ElseIf FrmMain1.TempPizza.PBakeType = BakeTypeList.Well Then
             RbWell.Checked = True
-        ElseIf FrmMain1.tempPizza.PBakeType = BakeTypeList.Under Then
+        ElseIf FrmMain1.TempPizza.PBakeType = BakeTypeList.Under Then
             RbUnder.Checked = True
         End If
     End Sub
 
-    ' method
+    ' method to setup form controls for cheese type
     Private Sub SetupCurrentCheeseType()
         '
-        If FrmMain1.tempPizza.PCheese.ChType = CheeseTypeList.Mozzarella Then
+        If FrmMain1.TempPizza.PCheese.ChType = CheeseTypeList.Mozzarella Then
             RbMozzarella.Checked = True
-        ElseIf FrmMain1.tempPizza.PCheese.ChType = CheeseTypeList.Mix Then
+        ElseIf FrmMain1.TempPizza.PCheese.ChType = CheeseTypeList.Mix Then
             RbMix.Checked = True
-        ElseIf FrmMain1.tempPizza.PCheese.ChType = CheeseTypeList.Cheddar Then
+        ElseIf FrmMain1.TempPizza.PCheese.ChType = CheeseTypeList.Cheddar Then
             RbCheddar.Checked = True
         End If
     End Sub
 
-    ' method
+    ' method to setup form controls for sauce type
     Private Sub SetupCurrentSauceType()
         '
-        If FrmMain1.tempPizza.PSauce.SType = SauceTypeList.Traditional Then
+        If FrmMain1.TempPizza.PSauce.SType = SauceTypeList.Traditional Then
             RbTraditional.Checked = True
-        ElseIf FrmMain1.tempPizza.PSauce.SType = SauceTypeList.ZestySalsa Then
+        ElseIf FrmMain1.TempPizza.PSauce.SType = SauceTypeList.ZestySalsa Then
             RbZestySalsa.Checked = True
-        ElseIf FrmMain1.tempPizza.PSauce.SType = SauceTypeList.White Then
+        ElseIf FrmMain1.TempPizza.PSauce.SType = SauceTypeList.White Then
             RbWhite.Checked = True
-        ElseIf FrmMain1.tempPizza.PSauce.SType = SauceTypeList.BBQ Then
+        ElseIf FrmMain1.TempPizza.PSauce.SType = SauceTypeList.BBQ Then
             RbBBQ.Checked = True
-        ElseIf FrmMain1.tempPizza.PSauce.SType = SauceTypeList.Buffalo Then
+        ElseIf FrmMain1.TempPizza.PSauce.SType = SauceTypeList.Buffalo Then
             RbBuffalo.Checked = True
         End If
     End Sub
 
-    ' method
+    ' method to change the pizza sauce type
     Private Sub ChangePizzaSauceType()
         ' grab sauce values
         If RbTraditional.Checked = True Then
-            FrmMain1.tempPizza.PSauce.SType = SauceTypeList.Traditional
-            FrmMain1.tempPizza.PSauce.SetPrice(Sauce.TRADITIONAL_PRICE)
+            FrmMain1.TempPizza.PSauce.SType = SauceTypeList.Traditional
+            FrmMain1.TempPizza.PSauce.IPrice = Sauce.TRADITIONAL_PRICE
         ElseIf RbZestySalsa.Checked = True Then
-            FrmMain1.tempPizza.PSauce.SType = SauceTypeList.ZestySalsa
-            FrmMain1.tempPizza.PSauce.SetPrice(Sauce.ZESTYSALSA_PRICE)
+            FrmMain1.TempPizza.PSauce.SType = SauceTypeList.ZestySalsa
+            FrmMain1.TempPizza.PSauce.IPrice = Sauce.ZESTYSALSA_PRICE
         ElseIf RbBuffalo.Checked = True Then
-            FrmMain1.tempPizza.PSauce.SType = SauceTypeList.Buffalo
-            FrmMain1.tempPizza.PSauce.SetPrice(Sauce.BUFFALO_PRICE)
+            FrmMain1.TempPizza.PSauce.SType = SauceTypeList.Buffalo
+            FrmMain1.TempPizza.PSauce.IPrice = Sauce.BUFFALO_PRICE
         ElseIf RbBBQ.Checked = True Then
-            FrmMain1.tempPizza.PSauce.SType = SauceTypeList.BBQ
-            FrmMain1.tempPizza.PSauce.SetPrice(Sauce.BBQ_PRICE)
+            FrmMain1.TempPizza.PSauce.SType = SauceTypeList.BBQ
+            FrmMain1.TempPizza.PSauce.IPrice = Sauce.BBQ_PRICE
         ElseIf RbWhite.Checked = True Then
-            FrmMain1.tempPizza.PSauce.SType = SauceTypeList.White
-            FrmMain1.tempPizza.PSauce.SetPrice(Sauce.WHITE_PRICE)
+            FrmMain1.TempPizza.PSauce.SType = SauceTypeList.White
+            FrmMain1.TempPizza.PSauce.IPrice = Sauce.WHITE_PRICE
         End If
     End Sub
 
-    ' method
+    ' method to change the cheese type
     Private Sub ChangePizzaCheeseType()
         ' grab cheese values
         If RbMozzarella.Checked = True Then
-            FrmMain1.tempPizza.PCheese.ChType = CheeseTypeList.Mozzarella
-            FrmMain1.tempPizza.PCheese.SetPrice(Cheese.MOZZARELLA_PRICE)
+            FrmMain1.TempPizza.PCheese.ChType = CheeseTypeList.Mozzarella
+            FrmMain1.TempPizza.PCheese.IPrice = Cheese.MOZZARELLA_PRICE
         ElseIf RbMix.Checked = True Then
-            FrmMain1.tempPizza.PCheese.ChType = CheeseTypeList.Mix
-            FrmMain1.tempPizza.PCheese.SetPrice(Cheese.MIX_PRICE)
+            FrmMain1.TempPizza.PCheese.ChType = CheeseTypeList.Mix
+            FrmMain1.TempPizza.PCheese.IPrice = Cheese.MIX_PRICE
         ElseIf RbCheddar.Checked = True Then
-            FrmMain1.tempPizza.PCheese.ChType = CheeseTypeList.Cheddar
-            FrmMain1.tempPizza.PCheese.SetPrice(Cheese.CHEDDAR_PRICE)
+            FrmMain1.TempPizza.PCheese.ChType = CheeseTypeList.Cheddar
+            FrmMain1.TempPizza.PCheese.IPrice = Cheese.CHEDDAR_PRICE
         End If
     End Sub
 
-    ' method
+    ' method to change the bake type
     Private Sub ChangePizzaBakeType()
         ' grab bake type values
         If RbNormal.Checked = True Then
-            FrmMain1.tempPizza.PBakeType = BakeTypeList.Normal
+            FrmMain1.TempPizza.PBakeType = BakeTypeList.Normal
         ElseIf RbWell.Checked = True Then
-            FrmMain1.tempPizza.PBakeType = BakeTypeList.Well
+            FrmMain1.TempPizza.PBakeType = BakeTypeList.Well
         ElseIf RbUnder.Checked = True Then
-            FrmMain1.tempPizza.PBakeType = BakeTypeList.Under
+            FrmMain1.TempPizza.PBakeType = BakeTypeList.Under
         End If
     End Sub
 
-    '
+    ' method to prepare to show next form
     Private Sub PrepareShowNextForm(nextForm As Object)
-        '
+        ' set next forms main form to current forms main form
         nextForm.FrmMain1 = FrmMain1
 
         ' prepare the next form
         nextForm.PrepareForm()
 
-        '
+        ' mimick location of current form
         nextForm.Location = Location
 
         ' show the next form

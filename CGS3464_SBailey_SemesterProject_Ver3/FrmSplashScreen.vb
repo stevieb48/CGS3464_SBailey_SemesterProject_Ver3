@@ -6,7 +6,6 @@
 '@version: 1.0
 '
 'Description
-' The Purpose of this Form FrmSplashScreen is to ...
+' The Purpose of this Form 'FrmSplashScreen' is to give an introductory screen for the application. 
 Public Class FrmSplashScreen
-
 End Class

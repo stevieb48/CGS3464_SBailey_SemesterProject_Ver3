@@ -1,10 +1,4 @@
-﻿Imports System
-Imports System.Collections.Generic
-Imports System.Linq
-Imports System.Text
-Imports EnumLists
-
-'@author: Stephen Bailey
+﻿'@author: Stephen Bailey
 'course: CGS3464
 'assignment: final project
 'date: 10/08/2018
@@ -12,7 +6,10 @@ Imports EnumLists
 '@version: 1.0
 '
 'Description
-' This SpecMeatzo Class inherits from the Pizza Class, which inherits from the Item Class.
+' This 'SpecMeatzo' Class inherits from the 'Pizza' Class, which inherits from the 'Item' Class. Describes an all meat Pizza.
+
+Imports EnumLists
+
 Public Class SpecMeatzo
     Inherits Pizza
 

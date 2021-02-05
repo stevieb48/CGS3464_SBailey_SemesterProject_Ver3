@@ -6,7 +6,8 @@
 '@version: 1.0
 '
 'Description
-' This SpecCustom Class inherits from the Pizza Class, which inherits from the Item Class. SpecCustom decsribes a custom Pizza.
+' This 'SpecCustom' Class inherits from the 'Pizza' Class, which inherits from the 'Item' Class. Describes a custom Pizza.
+
 Imports EnumLists
 
 Public Class SpecCustom

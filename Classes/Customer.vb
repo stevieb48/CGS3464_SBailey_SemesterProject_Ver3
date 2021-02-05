@@ -6,7 +6,7 @@
 '@version: 1.0
 '
 'Description
-' This Customer Class describes a Customer.
+' This 'Customer' Class describes a Customer.
 Public Class Customer
 
     ' instance properties
@@ -24,16 +24,16 @@ Public Class Customer
     End Sub
 
     ' constructor carryout customer
-    Public Sub New(custName As String)
-        CName = custName
+    Public Sub New(name As String)
+        CName = name
         CStreet = Nothing
         CCity = Nothing
         CZipcode = Nothing
     End Sub
 
     ' constructor delivery customer
-    Public Sub New(custName As String, street As String, city As String, zipcode As Integer)
-        CName = custName
+    Public Sub New(name As String, street As String, city As String, zipcode As Integer)
+        CName = name
         CStreet = street
         CCity = city
         CZipcode = zipcode

@@ -1,4 +1,7 @@
-﻿'@author: Stephen Bailey
+﻿Imports Classes
+Imports EnumLists
+
+'@author: Stephen Bailey
 'course: CGS3464
 'assignment: final project
 'date: 10/08/2018
@@ -6,22 +9,18 @@
 '@version: 1.0
 '
 'Description
-' The Purpose of this Form FrmReceipt is to ...
-Imports Classes
-Imports EnumLists
-
+' The Purpose of this Form 'FrmReceipt' is to display the details of the completed 'Order'.
 Public Class FrmReceipt
     ' ****************** PUBLIC PROPERTIES BEGIN ******************
     ' property to store the main form running
-    Public FrmMain1 As FrmMain = New FrmMain()
+    Public Property FrmMain1 As FrmMain = New FrmMain()
 
     '
-    Public FrmCheckout1 As FrmCheckout
+    Public Property FrmCheckout1 As FrmCheckout
     ' ******************* PUBLIC PROPERTIES END *******************
 
     ' constructor default form
     Public Sub New()
-
         ' This call is required by the designer.
         InitializeComponent()
 
@@ -31,14 +30,14 @@ Public Class FrmReceipt
     ' ******************* EVENT LISTENERS BEGIN *******************
     '
     Private Sub BtnOk_Click(sender As Object, e As EventArgs) Handles BtnOk.Click
-        ' reset order and pizza and customer and form
+        ' mimick location
         FrmMain1.Location = Location
 
         '
         FrmMain1.NumOrders += 1
 
         '
-        FrmMain1.tempOrder = New Order(FrmMain1.NumOrders)
+        FrmMain1.TempOrder = New Order(FrmMain1.NumOrders)
 
         '
         PrepareShowNextForm(FrmMain1)
@@ -58,20 +57,20 @@ Public Class FrmReceipt
 
     ' method
     Public Sub PrepareForm()
-        ' if delivery set the rest of the values
-        If FrmMain1.tempOrder.OType = OrderTypeList.Delivery Then
-            '
-            LstCustomerInformation.Items.Insert(0, FrmMain1.tempOrder.OCustomer.CZipcode)
+        ' if delivery set form controls with values the values
+        If FrmMain1.TempOrder.OType = OrderTypeList.Delivery Then
+            ' insert into listbox zipcode
+            LstCustomerInformation.Items.Insert(0, FrmMain1.TempOrder.OCustomer.CZipcode)
 
-            '
-            LstCustomerInformation.Items.Insert(0, FrmMain1.tempOrder.OCustomer.CCity)
+            ' city
+            LstCustomerInformation.Items.Insert(0, FrmMain1.TempOrder.OCustomer.CCity)
 
-            '
-            LstCustomerInformation.Items.Insert(0, FrmMain1.tempOrder.OCustomer.CStreet)
+            ' street
+            LstCustomerInformation.Items.Insert(0, FrmMain1.TempOrder.OCustomer.CStreet)
         End If
 
         ' set the order name
-        LstCustomerInformation.Items.Insert(0, FrmMain1.tempOrder.OCustomer.CName)
+        LstCustomerInformation.Items.Insert(0, FrmMain1.TempOrder.OCustomer.CName)
 
         ' set the combobox to reflect the order type from incoming order
         If FrmMain1.CboCarryoutOrDelivery.SelectedItem = OrderTypeList.Carryout Then
@@ -84,25 +83,25 @@ Public Class FrmReceipt
         LblOrderNumber.Text = FrmMain1.LblOrderNumber.Text
 
         ' add pizza list to order list box
-        LstOrder.Items.AddRange(FrmMain1.tempOrder.OPizzaList.ToArray)
+        LstOrder.Items.AddRange(FrmMain1.TempOrder.OPizzaList.ToArray)
 
         ' add order details to bill
         PrepareBill()
     End Sub
 
-    '
+    ' method to prepare the bill
     Private Sub PrepareBill()
-        '
-        lblSubtotal.Text = FormatCurrency(FrmMain1.tempOrder.OSubtotal)
+        ' setup subtotal label
+        lblSubtotal.Text = FormatCurrency(FrmMain1.TempOrder.OSubtotal)
 
-        '
-        lblTax.Text = FormatCurrency(FrmMain1.tempOrder.OTax)
+        ' tax label
+        lblTax.Text = FormatCurrency(FrmMain1.TempOrder.OTax)
 
-        '
-        lblDeliveryCharge.Text = FormatCurrency(FrmMain1.tempOrder.ODeliveryCharge)
+        ' delivery charge
+        lblDeliveryCharge.Text = FormatCurrency(FrmMain1.TempOrder.ODeliveryCharge)
 
-        '
-        lblTotal.Text = FormatCurrency(FrmMain1.tempOrder.OTotal)
+        ' total
+        lblTotal.Text = FormatCurrency(FrmMain1.TempOrder.OTotal)
     End Sub
     ' ******************** CUSTOM METHODS END *********************
 End Class

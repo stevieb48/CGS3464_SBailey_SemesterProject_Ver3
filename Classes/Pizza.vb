@@ -6,14 +6,14 @@
 '@version: 1.0
 '
 'Description
-' This Pizza Class is the Base Pizza Class. It inherits from the Item Class.
+' This 'Pizza' Class is the Base Pizza Class. It inherits from the 'Item' Class. Describes a pizza.
 Imports EnumLists
 
 Public MustInherit Class Pizza
     Inherits Item
 
     ' CONSTANT
-    Private Const BASE_PIZZA_PRICE As Decimal = 12.99
+    Private Const BASE_PIZZA_PRICE As Double = 12.99
 
     ' instance properties
     Public Property PName As String
@@ -57,16 +57,16 @@ Public MustInherit Class Pizza
         Dim PCost = 0.00
 
         ' get base pizza cost
-        PCost = GetPrice()
+        PCost = IPrice
 
         ' get crust price
-        PCost += PCrust.GetPrice()
+        PCost += PCrust.IPrice
 
         ' get sauce price
-        PCost += PSauce.GetPrice()
+        PCost += PSauce.IPrice
 
         ' get cheese price
-        PCost += PCheese.GetPrice()
+        PCost += PCheese.IPrice
 
         ' call method to calculate toppings price
         PCost += CalcPToppingCost()
@@ -82,7 +82,7 @@ Public MustInherit Class Pizza
 
         ' figure out the cost of the toppings
         For Each topping As Topping In PToppingList
-            PToppingCost += topping.GetPrice
+            PToppingCost += topping.IPrice
         Next
 
         ' return cost of the toppings

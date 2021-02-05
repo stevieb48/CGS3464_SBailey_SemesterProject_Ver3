@@ -6,11 +6,11 @@
 '@version: 1.0
 '
 'Description
-' This Item Class is a Base Class. The main purpose is to store Price for various Types of Items.
+' This 'Item' Class is a Base Class. The main purpose is to store Price for various Types of Items.
 Public MustInherit Class Item
 
-    ' instance property
-    Public Property IPrice As Decimal
+    ' property
+    Public Property IPrice As Double
 
     ' constructor default
     Public Sub New()
@@ -18,17 +18,7 @@ Public MustInherit Class Item
     End Sub
 
     ' constructor item parameter price
-    Public Sub New(price As Decimal)
-        IPrice = price
-    End Sub
-
-    ' get item cost
-    Public Function GetPrice() As Decimal
-        Return IPrice
-    End Function
-
-    ' set item cost
-    Public Sub SetPrice(price As Decimal)
+    Public Sub New(price As Double)
         IPrice = price
     End Sub
 

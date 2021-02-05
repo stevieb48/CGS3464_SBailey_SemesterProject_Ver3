@@ -6,7 +6,8 @@
 '@version: 1.0
 '
 'Description
-' This SpecTaco Class inherits from the Pizza Class, which inherits from the Item Class.
+' This 'SpecTaco' Class inherits from the 'Pizza' Class, which inherits from the 'Item' Class. Describes a Taco Pizza.
+
 Imports EnumLists
 
 Public Class SpecTaco

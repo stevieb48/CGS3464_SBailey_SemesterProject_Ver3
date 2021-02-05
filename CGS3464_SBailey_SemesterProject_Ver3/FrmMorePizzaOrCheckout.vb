@@ -1,4 +1,6 @@
-﻿'@author: Stephen Bailey
+﻿Imports EnumLists
+
+'@author: Stephen Bailey
 'course: CGS3464
 'assignment: final project
 'date: 10/08/2018
@@ -6,33 +8,30 @@
 '@version: 1.0
 '
 'Description
-' The Purpose of this Form FrmPizzaEdit is to ...
-Imports EnumLists
-
+' The Purpose of this Form 'FrmMorePizzaOrCheckout' is to determine if the user wants to add another pizza or checkout.
 Public Class FrmMorePizzaOrCheckout
     ' ************************* CONSTANT **************************
     Dim INDEX_MODIFIER As Integer = 1
 
     ' ****************** PUBLIC PROPERTIES BEGIN ******************
     ' property to store the main form
-    Public FrmMain1 As FrmMain = New FrmMain()
+    Public Property FrmMain1 As FrmMain = New FrmMain()
 
     ' property to store the previous form 
-    Public FrmPizzaEdit1 As FrmPizzaEdit
+    Public Property FrmPizzaEdit1 As FrmPizzaEdit
 
     ' property to store the next form if order type is delivery
-    Public FrmDeliveryInformation1 As FrmDeliveryInformation
+    Public Property FrmDeliveryInformation1 As FrmDeliveryInformation
 
     ' property to store the next form if order type is carryout
-    Public FrmCarryoutInformation1 As FrmCarryoutInformation
+    Public Property FrmCarryoutInformation1 As FrmCarryoutInformation
 
     ' property to store the next form if user wants another pizza
-    Public FrmCustomOrSpecialty1 As FrmCustomOrSpecialty
+    Public Property FrmCustomOrSpecialty1 As FrmCustomOrSpecialty
     ' ******************* PUBLIC PROPERTIES END *******************
 
     ' constructor default form
     Public Sub New()
-
         ' This call is required by the designer.
         InitializeComponent()
 
@@ -58,9 +57,9 @@ Public Class FrmMorePizzaOrCheckout
     Private Sub CbxCarryoutOrDelivery_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CboCarryoutOrDelivery.SelectedIndexChanged
         '
         If CboCarryoutOrDelivery.SelectedItem = OrderTypeList.Carryout Then
-            FrmMain1.tempOrder.OType = OrderTypeList.Carryout
+            FrmMain1.TempOrder.OType = OrderTypeList.Carryout
         ElseIf CboCarryoutOrDelivery.SelectedItem = OrderTypeList.Delivery Then
-            FrmMain1.tempOrder.OType = OrderTypeList.Delivery
+            FrmMain1.TempOrder.OType = OrderTypeList.Delivery
         End If
 
         ' set main forms combobox
@@ -92,7 +91,7 @@ Public Class FrmMorePizzaOrCheckout
     ' event
     Private Sub BtnAddPizza_Click(sender As Object, e As EventArgs) Handles BtnAddPizza.Click
         ' reset pizza
-        FrmMain1.tempPizza = Nothing
+        FrmMain1.TempPizza = Nothing
 
         ' create new form and set properties for new form
         FrmMain1.FrmCustomOrSpecialty1.FrmMorePizzaOrCheckout1 = Me
@@ -105,13 +104,13 @@ Public Class FrmMorePizzaOrCheckout
     ' event
     Private Sub BtnEditPizza_Click(sender As Object, e As EventArgs) Handles BtnEditPizza.Click
         ' check selected item in lstbox
-        FrmMain1.tempPizza = LstOrder.SelectedItem
+        FrmMain1.TempPizza = LstOrder.SelectedItem
 
         ' remove the cost of the selected pizza
-        FrmMain1.tempOrder.OSubtotal = FrmMain1.tempOrder.OSubtotal - FrmMain1.tempOrder.OPizzaList(LstOrder.SelectedIndex).CalcPizzaCost
+        FrmMain1.TempOrder.OSubtotal = FrmMain1.TempOrder.OSubtotal - FrmMain1.TempOrder.OPizzaList(LstOrder.SelectedIndex).CalcPizzaCost
 
         ' remove selected pizza from the order
-        FrmMain1.tempOrder.OPizzaList.RemoveAt(LstOrder.SelectedIndex)
+        FrmMain1.TempOrder.OPizzaList.RemoveAt(LstOrder.SelectedIndex)
 
         '
         BtnPrevious.PerformClick()
@@ -127,13 +126,13 @@ Public Class FrmMorePizzaOrCheckout
     '
     Private Sub BtnDeletePizza_Click(sender As Object, e As EventArgs) Handles BtnDeletePizza.Click
         ' remove selected pizza from the order
-        FrmMain1.tempOrder.OPizzaList.RemoveAt(LstOrder.SelectedIndex)
+        FrmMain1.TempOrder.OPizzaList.RemoveAt(LstOrder.SelectedIndex)
 
         '
         LstOrder.Items.Clear()
 
         ' refresh current list to order list box
-        LstOrder.Items.AddRange(FrmMain1.tempOrder.OPizzaList.ToArray)
+        LstOrder.Items.AddRange(FrmMain1.TempOrder.OPizzaList.ToArray)
 
         ' reset bill
         PrepareBill()
@@ -159,7 +158,7 @@ Public Class FrmMorePizzaOrCheckout
         BtnDeletePizza.Enabled = False
 
         ' add pizza list to order list box
-        LstOrder.Items.AddRange(FrmMain1.tempOrder.OPizzaList.ToArray)
+        LstOrder.Items.AddRange(FrmMain1.TempOrder.OPizzaList.ToArray)
 
         ' add order details to bill
         PrepareBill()
@@ -168,19 +167,19 @@ Public Class FrmMorePizzaOrCheckout
     '
     Private Sub PrepareBill()
         '
-        FrmMain1.tempOrder.PrepareOBill()
+        FrmMain1.TempOrder.PrepareOBill()
 
         '
-        lblSubtotal.Text = FormatCurrency(FrmMain1.tempOrder.OSubtotal)
+        lblSubtotal.Text = FormatCurrency(FrmMain1.TempOrder.OSubtotal)
 
         '
-        lblTax.Text = FormatCurrency(FrmMain1.tempOrder.OTax)
+        lblTax.Text = FormatCurrency(FrmMain1.TempOrder.OTax)
 
         '
-        lblDeliveryCharge.Text = FormatCurrency(FrmMain1.tempOrder.ODeliveryCharge)
+        lblDeliveryCharge.Text = FormatCurrency(FrmMain1.TempOrder.ODeliveryCharge)
 
         '
-        lblTotal.Text = FormatCurrency(FrmMain1.tempOrder.OTotal)
+        lblTotal.Text = FormatCurrency(FrmMain1.TempOrder.OTotal)
     End Sub
 
     '
